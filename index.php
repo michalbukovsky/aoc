@@ -4,11 +4,12 @@ error_reporting(E_ALL);
 
 use App\IRunner;
 use App\Utils\Outputter;
+use Nette\Loaders\RobotLoader;
 use Tracy\Debugger;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$loader = new Nette\Loaders\RobotLoader;
+$loader = new RobotLoader;
 
 $loader->addDirectory(__DIR__ . '/app');
 Debugger::enable(null, __DIR__ . '/log');
@@ -18,7 +19,7 @@ $loader->setTempDirectory(__DIR__ . '/temp');
 $loader->register();
 
 $day = ($argv[1] ?? null);
-$part = (int)($argv[2] ?? 1);
+$part = (int) ($argv[2] ?? 1);
 
 if ($day === null) {
     Outputter::errorFatal('No day specified');
@@ -35,14 +36,13 @@ if (!file_exists($folderName)) {
 $filesInFolder = scandir($folderName);
 
 foreach ($filesInFolder as $filename) {
-    if (substr($filename, -3) === 'php') {
+    if (str_ends_with($filename, 'php')) {
         $className = '\\App\\' . substr($filename, 0, -4);
 
         if (!is_a($className, IRunner::class, true)) {
             continue;
         }
 
-        /** @var IRunner $day */
         $day = new $className();
 
         Outputter::notice('Result:');

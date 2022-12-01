@@ -8,5 +8,8 @@ run:
 	docker-compose up -d
 	docker exec -it aoc composer install
 
+bash:
+	docker exec -it aoc bash
+
 stop:
 	docker-compose down

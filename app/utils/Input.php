@@ -85,7 +85,7 @@ class Input
 
     public function getFirstLine(bool $remove = false): string
     {
-        if (strpos($this->data, "\n") === false) {
+        if (!str_contains($this->data, "\n")) {
             return $this->data;
         }
 
