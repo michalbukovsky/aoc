@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: aoc
+        restart: on-failure
+        ports:
+            - "127.0.0.1:80:80"
+            - "127.0.0.1:443:443"
+        volumes:
+            - .:/var/www/html
+        environment:
+            DEPLOY_MODE: development #[development, test, production]
+            NETTE_DEBUG: 1
+            PHP_EXTENSION_XDEBUG: 1
+            PHP_EXTENSION_GD: 1
+            PHP_EXTENSION_INTL: 1
+        networks:
+            - aoc_network
+
+networks:
+    aoc_network:
+        name: aoc_network
