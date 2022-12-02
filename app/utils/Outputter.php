@@ -7,7 +7,7 @@ abstract class Outputter
     private const RED = "\033[91m";
     private const GREEN = "\033[92m";
     private const YELLOW = "\033[93m";
-
+    private const END = "\033[0m";
 
     public static function errorFatal(string $message): void
     {
@@ -42,6 +42,6 @@ abstract class Outputter
 
     private static function echoMessage(string $message, string $color, bool $newline = true): void
     {
-        echo $color . $message . ($newline ? "\n" : '');
+        echo $color . $message . ($newline ? "\n" : '') . self::END;
     }
 }
