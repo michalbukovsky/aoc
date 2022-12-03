@@ -74,7 +74,7 @@ class Input
     /**
      * @return string[][]
      */
-    public function getAsArrayOfChars(bool $filterLines = true): array
+    public function getAsArrayOfArrayOfChars(bool $filterLines = true): array
     {
         return array_map(
             static fn(string $line): array => str_split($line, 1),
