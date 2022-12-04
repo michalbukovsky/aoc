@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App;
 
@@ -9,13 +9,13 @@ class Temp extends TwoPartRunner
 
     protected function runPart1(Input $data): string
     {
-        return '';
+        return (string) 0;
     }
 
 
     protected function runPart2(Input $data): string
     {
-        return '';
+        return (string) 0;
     }
 
 

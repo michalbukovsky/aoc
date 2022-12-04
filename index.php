@@ -36,26 +36,28 @@ if (!file_exists($folderName)) {
 $filesInFolder = scandir($folderName);
 
 foreach ($filesInFolder as $filename) {
-    if (str_ends_with($filename, 'php')) {
-        $className = '\\App\\' . substr($filename, 0, -4);
-
-        if (!is_a($className, IRunner::class, true)) {
-            continue;
-        }
-
-        $day = new $className();
-
-        Outputter::notice('Result:');
-        Outputter::newline();
-
-        try {
-            $day->run($part);
-        } catch (Throwable $e) {
-            Outputter::error('Fatal error (' . get_class($e) . '):');
-            Outputter::errorFatal($e->getMessage());
-        }
-        die;
+    if (!str_ends_with($filename, '.php')) {
+        continue;
     }
+
+    $runnerClassName = '\\App\\' . substr($filename, 0, -4);
+
+    if (!is_a($runnerClassName, IRunner::class, true)) {
+        continue;
+    }
+
+    $runner = new $runnerClassName();
+
+    Outputter::notice('Result:');
+    Outputter::newline();
+
+    try {
+        $runner->run($part);
+    } catch (Throwable $e) {
+        Outputter::error('Fatal error (' . get_class($e) . '):');
+        Outputter::errorFatal($e->getMessage());
+    }
+    die;
 }
 
 Outputter::errorFatal("No Runner class found for day '$day'");
