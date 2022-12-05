@@ -6,50 +6,40 @@ use App\Utils\Input;
 use App\Utils\Outputter;
 use ReflectionClass;
 
-abstract class TwoPartRunner implements IRunner
+class Runner
 {
-    protected const TEST_DATA_FILE_1 = 'test1.txt';
-    protected const TEST_DATA_FILE_2 = 'test2.txt';
-    protected const TEST_DATA_FILE_DEFAULT = 'test.txt';
-    protected const DATA_FILE = 'data.txt';
+    private const TEST_DATA_FILE_1 = 'test1.txt';
+    private const TEST_DATA_FILE_2 = 'test2.txt';
+    private const TEST_DATA_FILE_DEFAULT = 'test.txt';
+    private const DATA_FILE = 'data.txt';
 
 
-    public function run(int $part): void
+    public function run(IDay $day, ?int $part): void
     {
-        $this->validateDayFolder($part);
+        $this->validateDayFolder($day, $part);
 
         if (!in_array($part, [1, 2], true)) {
             Outputter::errorFatal("Invalid part '$part'.");
         }
 
-        $this->validateTestResult($part);
+        $this->validateTestResult($day, $part);
 
         if ($part === 1) {
-            $result = $this->runPart1($this->getInput(self::DATA_FILE));
+            $result = $day->runPart1($this->getInput($day, self::DATA_FILE));
         } else {
-            $result = $this->runPart2($this->getInput(self::DATA_FILE));
+            $result = $day->runPart2($this->getInput($day, self::DATA_FILE));
         }
 
         Outputter::success("Result:");
         Outputter::success($result);
+        Outputter::newline();
+        Outputter::newline();
     }
 
 
-    abstract protected function runPart1(Input $data): string;
-
-
-    abstract protected function runPart2(Input $data): string;
-
-
-    abstract protected function getExpectedTestResult1(): ?string;
-
-
-    abstract protected function getExpectedTestResult2(): ?string;
-
-
-    private function validateDayFolder(int $part): void
+    private function validateDayFolder(IDay $day, int $part): void
     {
-        $folder = $this->getCurrentFolder();
+        $folder = $this->getFolderOfDay($day);
 
         if ($part === 1 && !file_exists("$folder/" . self::TEST_DATA_FILE_1)
             && !file_exists("$folder/" . self::TEST_DATA_FILE_DEFAULT)
@@ -69,14 +59,14 @@ abstract class TwoPartRunner implements IRunner
     }
 
 
-    protected function validateTestResult(int $part): void
+    private function validateTestResult(IDay $day, int $part): void
     {
         if ($part === 1) {
-            $expected = $this->getExpectedTestResult1();
-            $real = $this->runPart1($this->getInput(self::TEST_DATA_FILE_1));
+            $expected = $day->getExpectedTestResult1();
+            $real = $day->runPart1($this->getInput($day, self::TEST_DATA_FILE_1));
         } else {
-            $expected = $this->getExpectedTestResult2();
-            $real = $this->runPart2($this->getInput(self::TEST_DATA_FILE_2));
+            $expected = $day->getExpectedTestResult2();
+            $real = $day->runPart2($this->getInput($day, self::TEST_DATA_FILE_2));
         }
 
         if ($expected === null) {
@@ -92,21 +82,20 @@ abstract class TwoPartRunner implements IRunner
         }
 
         Outputter::success("The test for part $part succeeded with result '$real'.");
-        Outputter::newline();
     }
 
 
-    protected function getCurrentFolder(): string
+    private function getFolderOfDay(IDay $day): string
     {
-        $reflection = new ReflectionClass(static::class);
+        $reflection = new ReflectionClass($day);
 
         return dirname($reflection->getFileName());
     }
 
 
-    protected function getInput(string $fileName): Input
+    private function getInput(IDay $day, string $fileName): Input
     {
-        $folder = $this->getCurrentFolder();
+        $folder = $this->getFolderOfDay($day);
 
         if (!file_exists("$folder/$fileName")) {
             $fileName = self::TEST_DATA_FILE_DEFAULT;

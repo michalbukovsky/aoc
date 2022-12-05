@@ -4,7 +4,7 @@ namespace App;
 
 use App\Utils\Input;
 
-class RockPaperScissors extends TwoPartRunner
+class RockPaperScissors implements IDay
 {
     private const THEM_ROCK = 'A';
     private const THEM_PAPER = 'B';
@@ -48,7 +48,7 @@ class RockPaperScissors extends TwoPartRunner
     ];
 
 
-    protected function runPart1(Input $data): string
+    public function runPart1(Input $data): string
     {
         $score = 0;
 
@@ -63,7 +63,7 @@ class RockPaperScissors extends TwoPartRunner
     }
 
 
-    protected function runPart2(Input $data): string
+    public function runPart2(Input $data): string
     {
         $score = 0;
 
@@ -79,13 +79,13 @@ class RockPaperScissors extends TwoPartRunner
     }
 
 
-    protected function getExpectedTestResult1(): ?string
+    public function getExpectedTestResult1(): ?string
     {
         return '15';
     }
 
 
-    protected function getExpectedTestResult2(): ?string
+    public function getExpectedTestResult2(): ?string
     {
         return '12';
     }

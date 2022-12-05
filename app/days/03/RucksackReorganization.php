@@ -4,10 +4,10 @@ namespace App;
 
 use App\Utils\Input;
 
-class RucksackReorganization extends TwoPartRunner
+class RucksackReorganization implements IDay
 {
 
-    protected function runPart1(Input $data): string
+    public function runPart1(Input $data): string
     {
         $score = 0;
         $scores = $this->getScores();
@@ -26,7 +26,7 @@ class RucksackReorganization extends TwoPartRunner
     }
 
 
-    protected function runPart2(Input $data): string
+    public function runPart2(Input $data): string
     {
         $score = 0;
         $scores = $this->getScores();
@@ -40,13 +40,13 @@ class RucksackReorganization extends TwoPartRunner
     }
 
 
-    protected function getExpectedTestResult1(): ?string
+    public function getExpectedTestResult1(): ?string
     {
         return '157';
     }
 
 
-    protected function getExpectedTestResult2(): ?string
+    public function getExpectedTestResult2(): ?string
     {
         return '70';
     }

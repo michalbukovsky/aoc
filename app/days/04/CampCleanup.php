@@ -6,10 +6,10 @@ use App\Utils\Input;
 use App\Utils\Vector2Int;
 use Generator;
 
-class CampCleanup extends TwoPartRunner
+class CampCleanup implements IDay
 {
 
-    protected function runPart1(Input $data): string
+    public function runPart1(Input $data): string
     {
         $overlappingGroups = 0;
 
@@ -25,7 +25,7 @@ class CampCleanup extends TwoPartRunner
     }
 
 
-    protected function runPart2(Input $data): string
+    public function runPart2(Input $data): string
     {
         $intersectingGroups = 0;
 
@@ -41,13 +41,13 @@ class CampCleanup extends TwoPartRunner
     }
 
 
-    protected function getExpectedTestResult1(): ?string
+    public function getExpectedTestResult1(): ?string
     {
         return '2';
     }
 
 
-    protected function getExpectedTestResult2(): ?string
+    public function getExpectedTestResult2(): ?string
     {
         return '4';
     }

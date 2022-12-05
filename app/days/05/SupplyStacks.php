@@ -4,7 +4,7 @@ namespace App;
 
 use App\Utils\Input;
 
-class SupplyStacks extends TwoPartRunner
+class SupplyStacks implements IDay
 {
     /**
      * @var array<int, array<string>>
@@ -12,13 +12,13 @@ class SupplyStacks extends TwoPartRunner
     private array $columns;
 
 
-    protected function runPart1(Input $data): string
+    public function runPart1(Input $data): string
     {
         return $this->runPart($data, false);
     }
 
 
-    protected function runPart2(Input $data): string
+    public function runPart2(Input $data): string
     {
         return $this->runPart($data, true);
     }
@@ -52,13 +52,13 @@ class SupplyStacks extends TwoPartRunner
     }
 
 
-    protected function getExpectedTestResult1(): ?string
+    public function getExpectedTestResult1(): ?string
     {
         return 'CMZ';
     }
 
 
-    protected function getExpectedTestResult2(): ?string
+    public function getExpectedTestResult2(): ?string
     {
         return 'MCD';
     }

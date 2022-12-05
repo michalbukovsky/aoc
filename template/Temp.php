@@ -4,28 +4,28 @@ namespace App;
 
 use App\Utils\Input;
 
-class Temp extends TwoPartRunner
+class Temp implements IDay
 {
 
-    protected function runPart1(Input $data): string
+    public function runPart1(Input $data): string
     {
         return (string) 0;
     }
 
 
-    protected function runPart2(Input $data): string
+    public function runPart2(Input $data): string
     {
         return (string) 0;
     }
 
 
-    protected function getExpectedTestResult1(): ?string
+    public function getExpectedTestResult1(): ?string
     {
         return '';
     }
 
 
-    protected function getExpectedTestResult2(): ?string
+    public function getExpectedTestResult2(): ?string
     {
         return '';
     }
