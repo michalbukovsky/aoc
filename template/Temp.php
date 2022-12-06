@@ -6,7 +6,6 @@ use App\Utils\Input;
 
 class Temp implements IDay
 {
-
     public function runPart1(Input $data): string
     {
         return (string) 0;
