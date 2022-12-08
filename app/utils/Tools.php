@@ -31,13 +31,13 @@ abstract class Tools
     public static function intifyArray(array $array): array
     {
         return array_map(
-            static fn(string $line): int => (int)$line,
+            static fn(string $line): int => (int) $line,
             $array
         );
     }
 
 
-    public static function arraySumRecursive(array $array): int
+    public static function arraySum2D(array $array): int
     {
         $sum = 0;
         foreach ($array as $subArray) {
@@ -48,11 +48,11 @@ abstract class Tools
     }
 
 
-    public static function arrayMax(array $array): int
+    public static function arrayMax2D(array $array, bool $fromKeys): int
     {
         $max = 0;
         foreach ($array as $line) {
-            $max = max($max, ...array_keys($line));
+            $max = max($max, ...($fromKeys ? array_keys($line) : $line));
         }
 
         return $max;
