@@ -43,4 +43,10 @@ final class Grid
 
         return $sum;
     }
+
+
+    public function toArray(): array
+    {
+        return $this->grid;
+    }
 }

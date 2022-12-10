@@ -6,7 +6,7 @@ use App\Utils\Input;
 
 class NoSpaceLeftOnDevice implements IDay
 {
-    private const SMALLER_DIR_SIZE = 100000;
+    private const SMALLER_DIR_SIZE = 100_000;
     private const MAX_ALLOCATED_SPACE = 40_000_000;
 
     /** @var array<string> */

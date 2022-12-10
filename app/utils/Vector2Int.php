@@ -77,7 +77,7 @@ class Vector2Int
     }
 
 
-    public function getDistance(Vector2Int $vector2Int): float
+    public function getVectorTo(Vector2Int $vector2Int): float
     {
         return sqrt(
             abs($this->getX() - $vector2Int->getX()) ** 2

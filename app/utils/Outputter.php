@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Utils;
 
@@ -8,6 +8,7 @@ abstract class Outputter
     private const GREEN = "\033[92m";
     private const YELLOW = "\033[93m";
     private const END = "\033[0m";
+
 
     public static function errorFatal(string $message): void
     {
@@ -37,6 +38,23 @@ abstract class Outputter
     public static function newline(): void
     {
         echo "\n";
+    }
+
+
+    public static function dump2DArray(array $array, int $start, int $size): void
+    {
+        for ($i = $start; $i < $size; $i++) {
+            for ($j = $start; $j < $size; $j++) {
+                $cell = $array[$i][$j] ?? '.';
+                if (is_bool($cell)) {
+                    echo $cell ? '█' : '.';
+                    continue;
+                }
+                echo $cell;
+            }
+            self::newline();
+        }
+        self::newline();
     }
 
 

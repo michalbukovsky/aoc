@@ -4,7 +4,7 @@ namespace App;
 
 use App\Utils\Grid;
 use App\Utils\Input;
-use App\Utils\Tools;
+use App\Utils\Outputter;
 use App\Utils\Vector2Int;
 
 class RopeBridge implements IDay
@@ -19,40 +19,13 @@ class RopeBridge implements IDay
 
     public function runPart1(Input $data): string
     {
-        $visitedByTail = new Grid();
-
-        $headPrevious = new Vector2Int(0, 0);
-        $head = new Vector2Int(0, 0);
-        $tail = new Vector2Int(0, 0);
-        $visitedByTail->setValue($tail, true);
-
-        foreach ($data->getAsArray() as $line) {
-            $direction = $line[0];
-            $distance = (int) substr($line, 2);
-
-            $directionVector = self::DIRS[$direction];
-
-            for ($i = 0; $i < $distance; $i++) {
-                $headPrevious->replace($head);
-
-                $head->addX($directionVector[0]);
-                $head->addY($directionVector[1]);
-
-                $headTailDistance = $head->getDistance($tail);
-                if ($headTailDistance > 1.5) {
-                    $tail->replace($headPrevious);
-                    $visitedByTail->setValue($tail, true);
-                }
-            }
-        }
-
-        return (string) $visitedByTail->getSum();
+        return $this->runPart($data, 1);
     }
 
 
     public function runPart2(Input $data): string
     {
-        return (string) 0;
+        return $this->runPart($data, 3);
     }
 
 
@@ -64,6 +37,57 @@ class RopeBridge implements IDay
 
     public function getExpectedTestResult2(): ?string
     {
-        return '';
+        return '36';
+    }
+
+
+    private function runPart(Input $data, int $tailsCount): string
+    {
+        $visitedByTails = new Grid();
+
+        $head = new Knot(new Vector2Int(0, 0), null);
+        $tails = $this->generateTails($tailsCount, $head);
+        $visitedByTails->setValue($head->getPos(), true);
+
+        foreach ($data->getAsArray() as $line) {
+            $direction = $line[0];
+            $distance = (int) substr($line, 2);
+            $directionVector = self::DIRS[$direction];
+
+            for ($i = 0; $i < $distance; $i++) {
+                $head->moveBy($directionVector[0], $directionVector[1]);
+
+                foreach ($tails as $tail) {
+                    $previousTail = $tail->getKnotPrevious();
+                    assert($previousTail !== null);
+
+                    $knotDistance = $tail->getPos()->getVectorTo($previousTail->getPos());
+                    if ($knotDistance > 1.5) {
+                        $tail->moveTowards($previousTail);
+                        $visitedByTails->setValue($tail->getPos(), true);
+                    }
+                }
+            }
+        }
+
+        Outputter::dump2DArray($visitedByTails->toArray(), -40, 30);
+
+        return (string) $visitedByTails->getSum();
+    }
+
+
+    /**
+     * @return array<int, Knot>
+     */
+    private function generateTails(int $count, Knot $previous): array
+    {
+        $knots = [];
+        for ($i = 0; $i < $count; $i++) {
+            $knot = new Knot(new Vector2Int(0, 0), $previous);
+            $previous = $knot;
+            $knots[] = $knot;
+        }
+
+        return $knots;
     }
 }
