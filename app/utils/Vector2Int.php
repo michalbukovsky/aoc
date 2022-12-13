@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use Generator;
+
 class Vector2Int
 {
     public function __construct(
@@ -90,5 +92,28 @@ class Vector2Int
     {
         $this->setX($vector2Int->getX());
         $this->setY($vector2Int->getY());
+    }
+
+
+    public function equals(Vector2Int $vector2Int): bool
+    {
+        return $this->x === $vector2Int->getX() && $this->y === $vector2Int->getY();
+    }
+
+
+    public function getDistanceInt(Vector2Int $end): int
+    {
+        return (int) (abs($this->x - $end->getX()) + abs($this->y - $end->getY()));
+    }
+
+
+    /**
+     * @return Generator<int, int> Like this: [$x => $y]
+     */
+    public function getNeighboursCoords(): Generator
+    {
+        for ($rad = 0; $rad < 2 * M_PI; $rad += M_PI / 2) {
+            yield $this->x + (int) sin($rad) => $this->y + (int) cos($rad);
+        }
     }
 }

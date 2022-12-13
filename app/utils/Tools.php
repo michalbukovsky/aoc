@@ -25,13 +25,23 @@ abstract class Tools
 
     /**
      * @param int[] $array
-     *
-     * @return array
      */
     public static function intifyArray(array $array): array
     {
         return array_map(
             static fn(string $line): int => (int) $line,
+            $array
+        );
+    }
+
+
+    /**
+     * @param float[] $array
+     */
+    public static function floatifyArray(array $array): array
+    {
+        return array_map(
+            static fn(string $line): float => (float) $line,
             $array
         );
     }

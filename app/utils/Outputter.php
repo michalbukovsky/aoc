@@ -58,6 +58,21 @@ abstract class Outputter
     }
 
 
+    /**
+     * @param callable $callback fn($cellContent): string
+     */
+    public static function dump2DArrayCallback(array $array, int $start, int $size, callable $callback): void
+    {
+        for ($i = $start; $i < $size; $i++) {
+            for ($j = $start; $j < $size; $j++) {
+                echo $callback($array[$i][$j] ?? null);
+            }
+            self::newline();
+        }
+        self::newline();
+    }
+
+
     private static function echoMessage(string $message, string $color, bool $newline = true): void
     {
         echo $color . $message . ($newline ? "\n" : '') . self::END;

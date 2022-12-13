@@ -25,7 +25,7 @@ class RopeBridge implements IDay
 
     public function runPart2(Input $data): string
     {
-        return $this->runPart($data, 3);
+        return $this->runPart($data, 9);
     }
 
 
@@ -57,14 +57,17 @@ class RopeBridge implements IDay
             for ($i = 0; $i < $distance; $i++) {
                 $head->moveBy($directionVector[0], $directionVector[1]);
 
-                foreach ($tails as $tail) {
+                foreach ($tails as $tailIndex => $tail) {
                     $previousTail = $tail->getKnotPrevious();
                     assert($previousTail !== null);
 
                     $knotDistance = $tail->getPos()->getVectorTo($previousTail->getPos());
                     if ($knotDistance > 1.5) {
                         $tail->moveTowards($previousTail);
-                        $visitedByTails->setValue($tail->getPos(), true);
+
+                        if ($tailIndex === $tailsCount - 1) {
+                            $visitedByTails->setValue($tail->getPos(), true);
+                        }
                     }
                 }
             }
