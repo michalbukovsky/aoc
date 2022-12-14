@@ -13,6 +13,15 @@ class Vector2Int
     }
 
 
+    public function add(Vector2Int $vector2Int): self
+    {
+        $this->x += $vector2Int->getX();
+        $this->y += $vector2Int->getY();
+
+        return $this;
+    }
+
+
     public function getX(): int
     {
         return $this->x;
@@ -79,7 +88,7 @@ class Vector2Int
     }
 
 
-    public function getVectorTo(Vector2Int $vector2Int): float
+    public function getDistanceTo(Vector2Int $vector2Int): float
     {
         return sqrt(
             abs($this->getX() - $vector2Int->getX()) ** 2
@@ -115,5 +124,17 @@ class Vector2Int
         for ($rad = 0; $rad < 2 * M_PI; $rad += M_PI / 2) {
             yield $this->x + (int) sin($rad) => $this->y + (int) cos($rad);
         }
+    }
+
+
+    public function getVectorTo(Vector2Int $end): Vector2Int
+    {
+        return new Vector2Int($end->getX() - $this->x, $end->getY() - $this->y);
+    }
+
+
+    public function getNormals(): Vector2Int
+    {
+        return new Vector2Int($this->x <=> 0, $this->y <=> 0);
     }
 }

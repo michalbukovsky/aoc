@@ -41,11 +41,11 @@ abstract class Outputter
     }
 
 
-    public static function dump2DArray(array $array, int $start, int $size): void
+    public static function dump2DArray(array $array, int $startX, int $startY, int $size): void
     {
-        for ($i = $start; $i < $size; $i++) {
-            for ($j = $start; $j < $size; $j++) {
-                $cell = $array[$i][$j] ?? '.';
+        for ($y = $startY; $y < $startY + $size; $y++) {
+            for ($x = $startX; $x < $startX + $size; $x++) {
+                $cell = $array[$y][$x] ?? '.';
                 if (is_bool($cell)) {
                     echo $cell ? '█' : '.';
                     continue;

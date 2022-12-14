@@ -10,7 +10,7 @@ final class Grid
     private array $grid;
 
 
-    public function initByValue(int $xSize, int $ySize, mixed $value): void
+    public function initByValue(int $xSize, int $ySize, string|int|bool $value): void
     {
         for ($row = 0; $row < $ySize; $row++) {
             for ($col = 0; $col < $xSize; $col++) {
@@ -20,7 +20,7 @@ final class Grid
     }
 
 
-    public function getValue(int $row, int $col): ?string
+    public function getValue(int $row, int $col): null|string|int|bool
     {
         return $this->grid[$row][$col] ?? null;
     }
@@ -48,5 +48,11 @@ final class Grid
     public function toArray(): array
     {
         return $this->grid;
+    }
+
+
+    public function getMaxY(): int
+    {
+        return (int) max(array_keys($this->grid));
     }
 }

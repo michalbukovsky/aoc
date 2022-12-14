@@ -82,7 +82,7 @@ class CathodeRayTube implements IDay
             $sleep = 1;
         }
 
-        Outputter::dump2DArray($grid->toArray(), 0, 40);
+        Outputter::dump2DArray($grid->toArray(), 0, 0, 40);
 
         return '0';
     }

@@ -61,7 +61,7 @@ class RopeBridge implements IDay
                     $previousTail = $tail->getKnotPrevious();
                     assert($previousTail !== null);
 
-                    $knotDistance = $tail->getPos()->getVectorTo($previousTail->getPos());
+                    $knotDistance = $tail->getPos()->getDistanceTo($previousTail->getPos());
                     if ($knotDistance > 1.5) {
                         $tail->moveTowards($previousTail);
 
@@ -72,8 +72,6 @@ class RopeBridge implements IDay
                 }
             }
         }
-
-        Outputter::dump2DArray($visitedByTails->toArray(), -40, 30);
 
         return (string) $visitedByTails->getSum();
     }
