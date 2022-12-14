@@ -8,6 +8,9 @@ use App\Utils\Vector2Int;
 
 class HillClimbingAlgorithm implements IDay
 {
+    /**
+     * @throws NoRouteException
+     */
     public function runPart1(Input $data): string
     {
         $start = null;
@@ -55,8 +58,15 @@ class HillClimbingAlgorithm implements IDay
         }
 
         $minDistance = 99999;
-        foreach ($starts as $start) {
-            $minDistance = min($minDistance, $this->getShortestDistance($start, $end, $tiles));
+        foreach ($starts as $i => $start) {
+            try {
+                $distance = $this->getShortestDistance($start, $end, $tiles);
+            } catch (NoRouteException) {
+                Outputter::error("#$i No route, skip");
+                continue;
+            }
+            Outputter::notice("#$i Distance: $distance");
+            $minDistance = min($minDistance, $distance);
         }
 
         return (string) $minDistance;
@@ -76,27 +86,8 @@ class HillClimbingAlgorithm implements IDay
 
 
     /**
-     * @param Node[][] $nodes
+     * @throws NoRouteException
      */
-    private function getNextBestNode(array $nodes): Node
-    {
-        $bestNode = null;
-        foreach ($nodes as $row) {
-            foreach ($row as $node) {
-                if ($node->isDisabled()) {
-                    continue;
-                }
-
-                if ($bestNode === null || ($node->getCost() < $bestNode->getCost())) {
-                    $bestNode = $node;
-                }
-            }
-        }
-
-        return $bestNode;
-    }
-
-
     private function getShortestDistance(Vector2Int $start, Vector2Int $end, array $tiles): int
     {
         /** @var Node[][] $nodes */
@@ -106,6 +97,10 @@ class HillClimbingAlgorithm implements IDay
 
         while (true) {
             $activeNode = $this->getNextBestNode($nodes);
+            if ($activeNode === null) {
+                throw new NoRouteException();
+            }
+
             $nodePos = $activeNode->getPos();
 
             if ($nodePos->equals($end)) {
@@ -134,14 +129,29 @@ class HillClimbingAlgorithm implements IDay
             $activeNode->disable();
         }
 
-        Outputter::dump2DArrayCallback($nodes, 0, 8, static function (?Node $node): string {
-            return ' '
-                . (isset($node)
-                    ? str_pad((string) $node->getDistanceFromStart(), 2, ' ', STR_PAD_LEFT)
-                    : '  ');
-        });
-
         return $activeNode->getDistanceFromStart();
+    }
+
+
+    /**
+     * @param Node[][] $nodes
+     */
+    private function getNextBestNode(array $nodes): ?Node
+    {
+        $bestNode = null;
+        foreach ($nodes as $row) {
+            foreach ($row as $node) {
+                if ($node->isDisabled()) {
+                    continue;
+                }
+
+                if ($bestNode === null || ($node->getCost() < $bestNode->getCost())) {
+                    $bestNode = $node;
+                }
+            }
+        }
+
+        return $bestNode;
     }
 }
 
