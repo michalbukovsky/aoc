@@ -19,7 +19,7 @@ class Node
         private readonly int $distanceFromStart,
         Vector2Int $end,
     ) {
-        $this->distanceToEnd = $pos->getDistanceInt($end);
+        $this->distanceToEnd = $pos->getDistanceManhattan($end);
         $this->calculateCost();
     }
 

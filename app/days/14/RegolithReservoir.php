@@ -4,7 +4,6 @@ namespace App;
 
 use App\Utils\Grid;
 use App\Utils\Input;
-use App\Utils\Outputter;
 use App\Utils\Vector2Int;
 
 class RegolithReservoir implements IDay
@@ -21,8 +20,6 @@ class RegolithReservoir implements IDay
 
         $settled = $this->dropSand($endlessVoid, $grid, $settled);
 
-        Outputter::dump2DArray($grid->toArray(), 400, 0, 300);
-
         return (string) $settled;
     }
 
@@ -35,8 +32,6 @@ class RegolithReservoir implements IDay
         $settled = 0;
 
         $settled = $this->dropSand($floor, $grid, $settled);
-
-        Outputter::dump2DArray($grid->toArray(), 400, 0, 300);
 
         return (string) $settled;
     }

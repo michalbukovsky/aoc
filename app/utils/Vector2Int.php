@@ -110,7 +110,7 @@ class Vector2Int
     }
 
 
-    public function getDistanceInt(Vector2Int $end): int
+    public function getDistanceManhattan(Vector2Int $end): int
     {
         return (int) (abs($this->x - $end->getX()) + abs($this->y - $end->getY()));
     }

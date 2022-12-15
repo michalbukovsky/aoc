@@ -67,4 +67,10 @@ abstract class Tools
 
         return $max;
     }
+
+
+    public static function arrayCount(array $array, mixed $ifValueIs): int
+    {
+        return count(array_filter($array, static fn($value) => $value === $ifValueIs));
+    }
 }
