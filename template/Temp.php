@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
-namespace App;
+namespace App\Years\Year2023\Day01;
 
+use App\IDay;
 use App\Utils\Input;
 
 class Temp implements IDay
@@ -11,18 +12,15 @@ class Temp implements IDay
         return (string) 0;
     }
 
-
     public function runPart2(Input $data): string
     {
         return (string) 0;
     }
 
-
     public function getExpectedTestResult1(): ?string
     {
         return '';
     }
-
 
     public function getExpectedTestResult2(): ?string
     {

@@ -28,11 +28,12 @@ class Bootstrap
             Outputter::errorFatal("Value '$year' is invalid for a year.");
         }
 
-        if (!file_exists(__DIR__ . "/years/$year")) {
+        if (!file_exists(__DIR__ . "/Years/Year$year")) {
             Outputter::errorFatal("Year '$year' not yet implemented");
         }
 
-        $folderName = __DIR__ . "/years/$year/" . str_pad($dayNumber, 2, '0', STR_PAD_LEFT);
+        $dayNumberPadded = str_pad($dayNumber, 2, '0', STR_PAD_LEFT);
+        $folderName = __DIR__ . "/Years/Year$year/Day" . $dayNumberPadded;
         if (!file_exists($folderName)) {
             Outputter::errorFatal("Day '$dayNumber' not yet implemented");
         }
@@ -44,7 +45,7 @@ class Bootstrap
                 continue;
             }
 
-            $dayClassName = '\\App\\' . substr($filename, 0, -4);
+            $dayClassName = "\\App\\Years\\Year$year\\Day$dayNumberPadded\\" . substr($filename, 0, -4);
 
             if (!is_a($dayClassName, IDay::class, true)) {
                 continue;
