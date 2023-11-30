@@ -41,7 +41,7 @@ class Input
     }
 
 
-    public function getAsArrayOfArrayOfIntegers(bool $filterLines = true, int $sliceLength = 1): array
+    public function getAsArrayOfArraysOfIntegers(bool $filterLines = true, int $sliceLength = 1): array
     {
         $returnArray = [];
         foreach ($this->getAsArray($filterLines) as $line) {
@@ -74,7 +74,7 @@ class Input
     /**
      * @return string[][]
      */
-    public function getAsArrayOfArrayOfChars(bool $filterLines = true): array
+    public function getAsArrayOfArraysOfChars(bool $filterLines = true): array
     {
         return array_map(
             static fn(string $line): array => str_split($line, 1),

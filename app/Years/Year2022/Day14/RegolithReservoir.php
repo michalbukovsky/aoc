@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace App\Years\Year2022\Day14;
 
@@ -10,7 +10,6 @@ use App\Utils\Vector2Int;
 class RegolithReservoir implements IDay
 {
     private const SOURCE = ['x' => 500, 'y' => 0];
-
 
     // 498,4 -> 498,6 -> 496,6
     public function runPart1(Input $data): string
@@ -24,7 +23,6 @@ class RegolithReservoir implements IDay
         return (string) $settled;
     }
 
-
     public function runPart2(Input $data): string
     {
         $grid = $this->initGrid($data);
@@ -37,18 +35,15 @@ class RegolithReservoir implements IDay
         return (string) $settled;
     }
 
-
     public function getExpectedTestResult1(): ?string
     {
         return '24';
     }
 
-
     public function getExpectedTestResult2(): ?string
     {
         return '93';
     }
-
 
     protected function initGrid(Input $data): Grid
     {
@@ -72,7 +67,6 @@ class RegolithReservoir implements IDay
         return $grid;
     }
 
-
     private function drawLine(Grid $grid, Vector2Int $start, Vector2Int $end)
     {
         $vector = $start->getVectorTo($end);
@@ -81,7 +75,6 @@ class RegolithReservoir implements IDay
             $grid->setValue($start->add($normals), '#');
         } while (!$start->equals($end));
     }
-
 
     protected function dropSand(int $endlessVoid, Grid $grid, int $settled): int
     {
@@ -93,18 +86,18 @@ class RegolithReservoir implements IDay
                     break 2;
                 }
 
-                if ($grid->getValue($sand->getY() + 1, $sand->getX()) === null) {
+                if ($grid->getValueXY($sand->getX(), $sand->getY() + 1) === null) {
                     $sand->addY(1);
                     continue;
                 }
 
-                if ($grid->getValue($sand->getY() + 1, $sand->getX() - 1) === null) {
+                if ($grid->getValueXY($sand->getX() - 1, $sand->getY() + 1) === null) {
                     $sand->addX(-1);
                     $sand->addY(1);
                     continue;
                 }
 
-                if ($grid->getValue($sand->getY() + 1, $sand->getX() + 1) === null) {
+                if ($grid->getValueXY($sand->getX() + 1, $sand->getY() + 1) === null) {
                     $sand->addX(1);
                     $sand->addY(1);
                     continue;

@@ -11,7 +11,7 @@ class SmokeBasin implements IDay
     {
         $lowSpotsSum = 0;
 
-        $map = $data->getAsArrayOfArrayOfIntegers(true);
+        $map = $data->getAsArrayOfArraysOfIntegers(true);
         foreach ($map as $y => $line) {
             foreach ($line as $x => $value) {
                 $neighbors = $this->getNeighborsValues($map, $x, $y);
@@ -29,7 +29,7 @@ class SmokeBasin implements IDay
     {
         $basins = [];
 
-        $map = $data->getAsArrayOfArrayOfIntegers(true);
+        $map = $data->getAsArrayOfArraysOfIntegers(true);
         foreach ($map as $y => $line) {
             foreach ($line as $x => $value) {
                 $basinSize = $this->findBasin($map, $x, $y) - 1;    // no idea why -1, but it works.

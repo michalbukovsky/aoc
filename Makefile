@@ -1,5 +1,5 @@
 SHELL = bash
-PROJECT_NAME = aoc2022
+PROJECT_NAME = aoc
 
 run:
 	mkdir log || true

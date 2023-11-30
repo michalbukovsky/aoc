@@ -73,7 +73,7 @@ class DumboOctopus implements IDay
     private function initField(Input $data): array
     {
         $field = [];
-        foreach ($data->getAsArrayOfArrayOfIntegers() as $y => $line) {
+        foreach ($data->getAsArrayOfArraysOfIntegers() as $y => $line) {
             foreach ($line as $x => $energy) {
                 $field[$y][$x] = new Octopus($energy);
             }

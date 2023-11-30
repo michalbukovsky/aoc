@@ -16,7 +16,7 @@ class TreetopTreeHouse implements IDay
     public function runPart1(Input $data): string
     {
         $this->visibleTrees = [];
-        $trees = $data->getAsArrayOfArrayOfChars();
+        $trees = $data->getAsArrayOfArraysOfChars();
 
         $this->markVisibleHorizontal($trees);
         $this->markVisibleHorizontal($trees, true);
@@ -29,7 +29,7 @@ class TreetopTreeHouse implements IDay
 
     public function runPart2(Input $data): string
     {
-        $trees = $data->getAsArrayOfArrayOfChars();
+        $trees = $data->getAsArrayOfArraysOfChars();
         $treeScenicScores = [];
         $count = count($trees);
 

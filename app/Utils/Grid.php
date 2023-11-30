@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Utils;
 
@@ -9,7 +11,6 @@ final class Grid
      */
     private array $grid = [];
 
-
     public function initByValue(int $xSize, int $ySize, string | int | bool $value): void
     {
         for ($row = 0; $row < $ySize; $row++) {
@@ -19,30 +20,20 @@ final class Grid
         }
     }
 
-
-    public function getValue(int $row, int $col): null | string | int | bool
-    {
-        return $this->grid[$row][$col] ?? null;
-    }
-
-
     public function setValue(Vector2Int $position, mixed $value): void
     {
         $this->grid[$position->getY()][$position->getX()] = $value;
     }
-
 
     public function getValueXY(int $x, int $y): null | string | int | bool
     {
         return $this->grid[$y][$x] ?? null;
     }
 
-
     public function setValueXY(int $x, int $y, mixed $value): void
     {
         $this->grid[$y][$x] = $value;
     }
-
 
     public function getSum(): int
     {
@@ -56,18 +47,15 @@ final class Grid
         return $sum;
     }
 
-
     public function toArray(): array
     {
         return $this->grid;
     }
 
-
     public function getMaxY(): int
     {
         return (int) max(array_keys($this->grid));
     }
-
 
     public function getRow(int $int): array
     {

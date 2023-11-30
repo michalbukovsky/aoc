@@ -18,7 +18,7 @@ class HillClimbingAlgorithm implements IDay
         $end = null;
         $tiles = [];
 
-        foreach ($data->getAsArrayOfArrayOfChars() as $row => $line) {
+        foreach ($data->getAsArrayOfArraysOfChars() as $row => $line) {
             foreach ($line as $col => $char) {
                 if ($char === 'S') {
                     $start = new Vector2Int($col, $row);
@@ -41,7 +41,7 @@ class HillClimbingAlgorithm implements IDay
         $end = null;
         $tiles = [];
 
-        foreach ($data->getAsArrayOfArrayOfChars() as $row => $line) {
+        foreach ($data->getAsArrayOfArraysOfChars() as $row => $line) {
             foreach ($line as $col => $char) {
                 if ($char === 'S') {
                     $char = 'a';

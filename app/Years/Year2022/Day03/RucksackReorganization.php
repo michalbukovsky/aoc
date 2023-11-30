@@ -13,7 +13,7 @@ class RucksackReorganization implements IDay
         $score = 0;
         $scores = $this->getScores();
 
-        foreach ($data->getAsArrayOfArrayOfChars() as $group) {
+        foreach ($data->getAsArrayOfArraysOfChars() as $group) {
             $halfCount = (int) (count($group) / 2);
             $firstHalf = array_slice($group, 0, $halfCount);
             $secondHalf = array_slice($group, $halfCount, $halfCount);
@@ -31,7 +31,7 @@ class RucksackReorganization implements IDay
     {
         $score = 0;
         $scores = $this->getScores();
-        foreach (array_chunk($data->getAsArrayOfArrayOfChars(), 3) as $chunk) {
+        foreach (array_chunk($data->getAsArrayOfArraysOfChars(), 3) as $chunk) {
             $intersectArray = array_intersect(...$chunk);
 
             $score += $scores[reset($intersectArray)];
