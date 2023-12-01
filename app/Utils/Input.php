@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Utils;
 
@@ -8,18 +10,20 @@ class Input
 {
     private string $data;
 
-
     public function __construct(string $data)
     {
         $this->data = $data;
     }
 
+    public function setData(string $data): void
+    {
+        $this->data = $data;
+    }
 
     public function getAsString(): string
     {
         return $this->data;
     }
-
 
     /**
      * @return string[]
@@ -31,7 +35,6 @@ class Input
         return ($filterLines === true ? array_filter($dataExploded) : $dataExploded);
     }
 
-
     /**
      * @return int[]
      */
@@ -39,7 +42,6 @@ class Input
     {
         return Tools::intifyArray($this->getAsArray($filterLines));
     }
-
 
     public function getAsArrayOfArraysOfIntegers(bool $filterLines = true, int $sliceLength = 1): array
     {
@@ -50,7 +52,6 @@ class Input
 
         return $returnArray;
     }
-
 
     /**
      * @return array<int, array<int, string>>
@@ -70,18 +71,16 @@ class Input
         );
     }
 
-
     /**
      * @return string[][]
      */
     public function getAsArrayOfArraysOfChars(bool $filterLines = true): array
     {
         return array_map(
-            static fn(string $line): array => str_split($line, 1),
+            static fn(string $line): array => str_split($line),
             $this->getAsArray($filterLines)
         );
     }
-
 
     public function getFirstLine(bool $remove = false): string
     {
@@ -96,7 +95,6 @@ class Input
 
         return $firstLine;
     }
-
 
     /**
      * @return int[]
