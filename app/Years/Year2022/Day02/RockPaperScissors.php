@@ -49,7 +49,7 @@ class RockPaperScissors implements IDay
     ];
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $score = 0;
 
@@ -60,11 +60,11 @@ class RockPaperScissors implements IDay
             $score += self::SCORE_BY_RESULT[$their . $mine];
         }
 
-        return (string) $score;
+        return $score;
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $score = 0;
 
@@ -76,7 +76,7 @@ class RockPaperScissors implements IDay
             $score += self::SCORE_BY_RESULT[$their . $mine];
         }
 
-        return (string) $score;
+        return $score;
     }
 
 

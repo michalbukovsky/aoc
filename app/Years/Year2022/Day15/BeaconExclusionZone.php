@@ -22,7 +22,7 @@ class BeaconExclusionZone implements IDay
 
 
     /** Sensor at x=2, y=18: closest beacon is at x=-2, y=15 */
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $grid = new Grid();
 
@@ -37,11 +37,11 @@ class BeaconExclusionZone implements IDay
         $count = Tools::arrayCount($grid->getRow($this->isTest ? 10 : 2_000_000), true);
         $this->isTest = false;
 
-        return (string) $count;
+        return $count;
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $size = 4_000_000;
         if ($this->isTest) {
@@ -75,7 +75,7 @@ class BeaconExclusionZone implements IDay
                     }
                 }
 
-                return (string) ($col * 4_000_000 + $row);
+                return $col * 4_000_000 + $row;
             }
         }
 

@@ -7,7 +7,7 @@ use App\Utils\Input;
 
 class SmokeBasin implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $lowSpotsSum = 0;
 
@@ -25,7 +25,7 @@ class SmokeBasin implements IDay
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $basins = [];
 

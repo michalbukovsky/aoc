@@ -7,19 +7,19 @@ use App\Utils\Input;
 
 class TuningTrouble implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->runPart($data, 4);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->runPart($data, 14);
     }
 
 
-    private function runPart(Input $data, int $length): string
+    private function runPart(Input $data, int $length): string | int
     {
         $dataString = $data->getAsString();
         $i = 0;
@@ -33,7 +33,7 @@ class TuningTrouble implements IDay
             $i++;
         } while (strlen($substring) === $length);
 
-        return (string) ($i + $length);
+        return $i + $length;
     }
 
 

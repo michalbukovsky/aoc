@@ -6,10 +6,10 @@ use App\Utils\Input;
 
 interface IDay
 {
-    public function runPart1(Input $data): string;
+    public function runPart1(Input $data): string | int;
 
 
-    public function runPart2(Input $data): string;
+    public function runPart2(Input $data): string | int;
 
 
     public function getExpectedTestResult1(): ?string;

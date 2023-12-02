@@ -7,13 +7,13 @@ use App\Utils\Input;
 
 class ExtendedPolymerization implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->runSimulation($data, 10);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->runSimulation($data, 40);
     }

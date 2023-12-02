@@ -7,13 +7,13 @@ use App\Utils\Input;
 
 class Lanternfish implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->simulate($data, 80);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->simulate($data, 256);
     }

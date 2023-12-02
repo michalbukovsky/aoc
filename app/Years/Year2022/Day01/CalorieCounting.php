@@ -7,7 +7,7 @@ use App\Utils\Input;
 
 class CalorieCounting implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $highestSum = 0;
 
@@ -20,10 +20,10 @@ class CalorieCounting implements IDay
             $highestSum = max($highestSum, $currentSum);
         }
 
-        return (string) $highestSum;
+        return $highestSum;
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $sums = [];
 
@@ -38,7 +38,7 @@ class CalorieCounting implements IDay
 
         rsort($sums);
 
-        return (string) ($sums[0] + $sums[1] + $sums[2]);
+        return $sums[0] + $sums[1] + $sums[2];
     }
 
     public function getExpectedTestResult1(): ?string

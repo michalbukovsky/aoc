@@ -9,13 +9,13 @@ class PassagePathing implements IDay
 {
     private const TRIES = 1500000;
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->runSimulation($data, 1);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->runSimulation($data, 2);
     }

@@ -11,7 +11,7 @@ class Dive implements IDay {
     private const UP = 'up';
     private const DOWN = 'down';
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $x = 0;
         $y = 0;
@@ -29,10 +29,10 @@ class Dive implements IDay {
             }
         }
 
-        return (string) ($x * $y);
+        return $x * $y;
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $aim = 0;
         $x = 0;
@@ -52,7 +52,7 @@ class Dive implements IDay {
             }
         }
 
-        return (string) ($x * $y);
+        return $x * $y;
     }
 
     public function getExpectedTestResult1(): ?string

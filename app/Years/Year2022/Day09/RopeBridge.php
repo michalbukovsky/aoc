@@ -17,13 +17,13 @@ class RopeBridge implements IDay
     ];
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->runPart($data, 1);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->runPart($data, 9);
     }
@@ -73,7 +73,7 @@ class RopeBridge implements IDay
             }
         }
 
-        return (string) $visitedByTails->getSum();
+        return $visitedByTails->getSum();
     }
 
 

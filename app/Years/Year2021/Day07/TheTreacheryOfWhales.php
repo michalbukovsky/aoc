@@ -7,13 +7,13 @@ use App\Utils\Input;
 
 class TheTreacheryOfWhales implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->simulateFuelConsumption($data, false);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->simulateFuelConsumption($data, true);
     }

@@ -8,7 +8,7 @@ use App\Utils\Input;
 class RucksackReorganization implements IDay
 
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $score = 0;
         $scores = $this->getScores();
@@ -23,11 +23,11 @@ class RucksackReorganization implements IDay
             $score += $scores[reset($intersectChars)];
         }
 
-        return (string) $score;
+        return $score;
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $score = 0;
         $scores = $this->getScores();
@@ -37,7 +37,7 @@ class RucksackReorganization implements IDay
             $score += $scores[reset($intersectArray)];
         }
 
-        return (string) $score;
+        return $score;
     }
 
 

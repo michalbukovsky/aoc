@@ -10,12 +10,19 @@ use Throwable;
 class Bootstrap
 {
     /**
+     * Run Day.
+     * Params:
+     *     1 - day: mandatory
+     *     2 - part: if not numeric or unset, both parts are ran.
+     *     3 - year: non-mandatory
+     *
      * @param string[] $args
      */
     public function run(array $args): void
     {
         $dayNumber = ($args[1] ?? null);
-        $part = isset($args[2]) ? (int) $args[2] : null;
+        $part = is_numeric($args[2] ?? null) ? (int) $args[2] : null;
+
         $year = $args[3] ?? date('Y');
 
         if ($dayNumber === null) {
@@ -66,7 +73,7 @@ class Bootstrap
                 }
             } catch (Throwable $e) {
                 Outputter::error('Fatal error (' . get_class($e) . '):');
-                Outputter::errorFatal($e->getMessage());
+                Outputter::errorFatal("{$e->getMessage()} ({$e->getFile()}: {$e->getLine()})");
             }
             die;
         }

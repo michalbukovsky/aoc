@@ -11,7 +11,7 @@ class CubeConundrum implements IDay
      * Input:
      * Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
      */
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $validGames = [];
         $game = 0;
@@ -42,10 +42,10 @@ class CubeConundrum implements IDay
             $validGames[] = $game;
         }
 
-        return (string) array_sum($validGames);
+        return array_sum($validGames);
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $sum = 0;
         foreach ($data->getAsArray() as $line) {
@@ -79,7 +79,7 @@ class CubeConundrum implements IDay
             $sum += (int) array_product($requiredBagCounts);
         }
 
-        return (string) $sum;
+        return $sum;
     }
 
     public function getExpectedTestResult1(): ?string

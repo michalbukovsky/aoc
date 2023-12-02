@@ -7,7 +7,7 @@ use App\Utils\Input;
 
 class HydrothermalVenture implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $map = [];
 
@@ -26,7 +26,7 @@ class HydrothermalVenture implements IDay
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $map = [];
 

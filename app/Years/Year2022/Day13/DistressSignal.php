@@ -16,7 +16,7 @@ class DistressSignal implements IDay
     /**
      * @throws JsonException
      */
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $correctIndices = [];
 
@@ -36,14 +36,14 @@ class DistressSignal implements IDay
             throw new LogicException('Unexpected result');
         }
 
-        return (string) array_sum($correctIndices);
+        return array_sum($correctIndices);
     }
 
 
     /**
      * @throws JsonException
      */
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $divider1Index = 0;
         $divider2Index = 0;
@@ -75,7 +75,7 @@ class DistressSignal implements IDay
             }
         }
 
-        return (string) ($divider1Index * $divider2Index);
+        return ($divider1Index * $divider2Index);
     }
 
 

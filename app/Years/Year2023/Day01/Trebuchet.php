@@ -20,7 +20,7 @@ class Trebuchet implements IDay
         '~<nine>~' => 9,
     ];
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $sum = 0;
 
@@ -43,10 +43,10 @@ class Trebuchet implements IDay
             $sum += (int) "$firstNumber$lastNumber";
         }
 
-        return (string) $sum;
+        return $sum;
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $dataString = $data->getAsString();
         // $2 is there twice so do don't accidentally lose the part of next number

@@ -16,7 +16,7 @@ class TransparentOrigami implements IDay
 
     private array $folds;
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $this->init($data);
 
@@ -25,10 +25,10 @@ class TransparentOrigami implements IDay
             break;
         }
 
-        return (string) Tools::arraySum2D($this->paper);
+        return Tools::arraySum2D($this->paper);
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $this->init($data);
 
@@ -43,7 +43,7 @@ class TransparentOrigami implements IDay
             Outputter::newline();
         }
 
-        return (string) Tools::arraySum2D($this->paper);
+        return Tools::arraySum2D($this->paper);
     }
 
     private function init(Input $data): void

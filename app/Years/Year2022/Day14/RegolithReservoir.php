@@ -12,7 +12,7 @@ class RegolithReservoir implements IDay
     private const SOURCE = ['x' => 500, 'y' => 0];
 
     // 498,4 -> 498,6 -> 496,6
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $grid = $this->initGrid($data);
         $endlessVoid = $grid->getMaxY();
@@ -20,10 +20,10 @@ class RegolithReservoir implements IDay
 
         $settled = $this->dropSand($endlessVoid, $grid, $settled);
 
-        return (string) $settled;
+        return $settled;
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $grid = $this->initGrid($data);
         $floor = $grid->getMaxY() + 2;
@@ -32,7 +32,7 @@ class RegolithReservoir implements IDay
 
         $settled = $this->dropSand($floor, $grid, $settled);
 
-        return (string) $settled;
+        return $settled;
     }
 
     public function getExpectedTestResult1(): ?string

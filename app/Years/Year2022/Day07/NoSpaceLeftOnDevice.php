@@ -23,7 +23,7 @@ class NoSpaceLeftOnDevice implements IDay
     private int $minimumSpaceToFree;
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $this->init($data);
 
@@ -34,18 +34,18 @@ class NoSpaceLeftOnDevice implements IDay
             $sizeOfSmallerDirs += $smallerDir->getTotalSize();
         }
 
-        return (string) $sizeOfSmallerDirs;
+        return $sizeOfSmallerDirs;
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $this->init($data);
 
         $this->minimumSpaceToFree = $this->root->getTotalSize() - self::MAX_ALLOCATED_SPACE;
         $this->saveSmallestDirToBeDeleted($this->root);
 
-        return (string) $this->smallestDirToDelete->getTotalSize();
+        return $this->smallestDirToDelete->getTotalSize();
     }
 
 

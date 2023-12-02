@@ -12,7 +12,7 @@ class SyntaxScoring implements IDay
     private const OPENING_PART_2 = ['(' => 1, '[' => 2, '{' => 3, '<' => 4];
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $score = 0;
 
@@ -39,7 +39,7 @@ class SyntaxScoring implements IDay
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $scores = [];
 

@@ -17,7 +17,7 @@ class DumboOctopus implements IDay
     private int $flashes;
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $this->field = $this->initField($data);
         $this->time = 0;
@@ -39,7 +39,7 @@ class DumboOctopus implements IDay
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $this->field = $this->initField($data);
         $this->time = 0;

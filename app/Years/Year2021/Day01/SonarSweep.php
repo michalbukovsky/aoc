@@ -7,7 +7,7 @@ use App\Utils\Input;
 
 class SonarSweep implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $lastNumber = null;
         $increments = 0;
@@ -25,10 +25,10 @@ class SonarSweep implements IDay
             $lastNumber = $number;
         }
 
-        return (string) $increments;
+        return $increments;
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $numbers = $data->getAsArrayOfIntegers();
         $lastSum = null;
@@ -50,7 +50,7 @@ class SonarSweep implements IDay
             $lastSum = $sum;
         }
 
-        return (string) $increments;
+        return $increments;
     }
 
     public function getExpectedTestResult1(): string

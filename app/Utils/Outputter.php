@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Utils;
 
@@ -9,37 +11,31 @@ abstract class Outputter
     private const YELLOW = "\033[93m";
     private const END = "\033[0m";
 
-
-    public static function errorFatal(string $message): void
+    public static function errorFatal(string | int $message): void
     {
         self::error($message);
         die;
     }
 
-
-    public static function error(string $message): void
+    public static function error(string | int $message): void
     {
         self::echoMessage($message, self::RED);
     }
 
-
-    public static function success(string $message): void
+    public static function success(string | int $message): void
     {
         self::echoMessage($message, self::GREEN);
     }
 
-
-    public static function notice(string $message, bool $newline = true): void
+    public static function notice(string | int $message, bool $newline = true): void
     {
         self::echoMessage($message, self::YELLOW, $newline);
     }
-
 
     public static function newline(): void
     {
         echo "\n";
     }
-
 
     public static function dump2DArray(array $array, int $startX, int $startY, int $size): void
     {
@@ -57,7 +53,6 @@ abstract class Outputter
         self::newline();
     }
 
-
     /**
      * @param callable $callback fn($cellContent): string
      */
@@ -72,8 +67,7 @@ abstract class Outputter
         self::newline();
     }
 
-
-    private static function echoMessage(string $message, string $color, bool $newline = true): void
+    private static function echoMessage(string | int $message, string $color, bool $newline = true): void
     {
         echo $color . $message . ($newline ? "\n" : '') . self::END;
     }

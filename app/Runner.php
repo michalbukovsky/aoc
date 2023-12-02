@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App;
 
@@ -12,7 +14,6 @@ class Runner
     private const TEST_DATA_FILE_2 = 'test2.txt';
     private const TEST_DATA_FILE_DEFAULT = 'test.txt';
     private const DATA_FILE = 'data.txt';
-
 
     public function run(IDay $day, ?int $part): void
     {
@@ -36,7 +37,6 @@ class Runner
         Outputter::newline();
     }
 
-
     private function validateDayFolder(IDay $day, int $part): void
     {
         $folder = $this->getFolderOfDay($day);
@@ -58,7 +58,6 @@ class Runner
         }
     }
 
-
     private function validateTestResult(IDay $day, int $part): void
     {
         if ($part === 1) {
@@ -75,7 +74,7 @@ class Runner
             return;
         }
 
-        if ($expected !== $real) {
+        if ($expected !== (string) $real) {
             Outputter::error("Test did not pass for part $part:");
             Outputter::error("Expected: '$expected'");
             Outputter::errorFatal("Returned: '$real'");
@@ -84,14 +83,12 @@ class Runner
         Outputter::success("The test for part $part succeeded with result '$real'.");
     }
 
-
     private function getFolderOfDay(IDay $day): string
     {
         $reflection = new ReflectionClass($day);
 
         return dirname($reflection->getFileName());
     }
-
 
     private function getInput(IDay $day, string $fileName): Input
     {

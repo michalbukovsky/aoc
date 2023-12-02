@@ -10,7 +10,7 @@ use Generator;
 class CampCleanup implements IDay
 {
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $overlappingGroups = 0;
 
@@ -22,11 +22,11 @@ class CampCleanup implements IDay
             }
         }
 
-        return (string) $overlappingGroups;
+        return $overlappingGroups;
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $intersectingGroups = 0;
 
@@ -38,7 +38,7 @@ class CampCleanup implements IDay
             }
         }
 
-        return (string) $intersectingGroups;
+        return $intersectingGroups;
     }
 
 

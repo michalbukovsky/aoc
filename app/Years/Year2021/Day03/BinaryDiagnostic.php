@@ -8,7 +8,7 @@ use App\Utils\Input;
 
 class BinaryDiagnostic implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $currentBitPosition = 0;
         $length = strlen($data->getFirstLine());
@@ -25,7 +25,7 @@ class BinaryDiagnostic implements IDay
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $result1 = $this->getResultForPart2($data, '1', '0');
         $result2 = $this->getResultForPart2($data, '0', '1');

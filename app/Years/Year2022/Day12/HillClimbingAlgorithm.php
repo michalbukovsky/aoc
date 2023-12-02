@@ -12,7 +12,7 @@ class HillClimbingAlgorithm implements IDay
     /**
      * @throws NoRouteException
      */
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $start = null;
         $end = null;
@@ -31,11 +31,11 @@ class HillClimbingAlgorithm implements IDay
             }
         }
 
-        return (string) $this->getShortestDistance($start, $end, $tiles);
+        return $this->getShortestDistance($start, $end, $tiles);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $starts = [];
         $end = null;
@@ -70,7 +70,7 @@ class HillClimbingAlgorithm implements IDay
             $minDistance = min($minDistance, $distance);
         }
 
-        return (string) $minDistance;
+        return $minDistance;
     }
 
 

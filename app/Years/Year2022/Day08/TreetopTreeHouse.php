@@ -13,7 +13,7 @@ class TreetopTreeHouse implements IDay
     private array $visibleTrees;
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $this->visibleTrees = [];
         $trees = $data->getAsArrayOfArraysOfChars();
@@ -23,11 +23,11 @@ class TreetopTreeHouse implements IDay
         $this->markVisibleVertical($trees);
         $this->markVisibleVertical($trees, true);
 
-        return (string) Tools::arraySum2D($this->visibleTrees);
+        return Tools::arraySum2D($this->visibleTrees);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $trees = $data->getAsArrayOfArraysOfChars();
         $treeScenicScores = [];
@@ -43,7 +43,7 @@ class TreetopTreeHouse implements IDay
             }
         }
 
-        return (string) Tools::arrayMax2D($treeScenicScores, false);
+        return Tools::arrayMax2D($treeScenicScores, false);
     }
 
 

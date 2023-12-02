@@ -8,13 +8,13 @@ use App\Utils\Tools;
 
 class MonkeyInTheMiddle implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->runPart($data, 20, true);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->runPart($data, 10_000, false);
     }
@@ -70,7 +70,7 @@ class MonkeyInTheMiddle implements IDay
 
         usort($monkeys, static fn(Monkey $a, Monkey $b) => $b->getInspections() <=> $a->getInspections());
 
-        return (string) ($monkeys[0]->getInspections() * $monkeys[1]->getInspections());
+        return ($monkeys[0]->getInspections() * $monkeys[1]->getInspections());
     }
 
 

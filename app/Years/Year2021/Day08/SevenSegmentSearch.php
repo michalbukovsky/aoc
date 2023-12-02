@@ -22,7 +22,7 @@ class SevenSegmentSearch implements IDay
     ];
 
 
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $occurrences = 0;
 
@@ -39,7 +39,7 @@ class SevenSegmentSearch implements IDay
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $sum = 0;
 

@@ -10,7 +10,7 @@ use App\Utils\Vector2Int;
 
 class CathodeRayTube implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         $commands = $data->getAsArray();
         $cycle = $sleep = $add = $sum = 0;
@@ -43,11 +43,11 @@ class CathodeRayTube implements IDay
             $sleep = 1;
         }
 
-        return (string) $sum;
+        return $sum;
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         $commands = $data->getAsArray();
         $cycle = $sleep = $add = 0;

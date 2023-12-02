@@ -9,13 +9,13 @@ use App\Utils\Tools;
 
 class GiantSquid implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
         return $this->play($data, true);
     }
 
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
         return $this->play($data, false);
     }
