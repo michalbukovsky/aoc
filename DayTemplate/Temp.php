@@ -7,14 +7,14 @@ use App\Utils\Input;
 
 class Temp implements IDay
 {
-    public function runPart1(Input $data): string
+    public function runPart1(Input $data): string | int
     {
-        return (string) 0;
+        return 0;
     }
 
-    public function runPart2(Input $data): string
+    public function runPart2(Input $data): string | int
     {
-        return (string) 0;
+        return 0;
     }
 
     public function getExpectedTestResult1(): ?string

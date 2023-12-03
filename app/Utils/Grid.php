@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Utils;
 
+use Generator;
+
 final class Grid
 {
     /**
@@ -11,13 +13,34 @@ final class Grid
      */
     private array $grid = [];
 
-    public function initByValue(int $xSize, int $ySize, string | int | bool $value): void
+    public static function initByInput(Input $data): self
     {
-        for ($row = 0; $row < $ySize; $row++) {
-            for ($col = 0; $col < $xSize; $col++) {
-                $this->grid[$row][$col] = $value;
+        $grid = new self();
+
+        $y = 0;
+        foreach ($data->getAsArrayOfArraysOfChars() as $line) {
+            $x = 0;
+            foreach ($line as $item) {
+                $grid->setValueXY($x, $y, $item);
+                ++$x;
+            }
+            ++$y;
+        }
+
+        return $grid;
+    }
+
+    public static function initByValue(int $xSize, int $ySize, string | int | bool $value): self
+    {
+        $grid = new self();
+
+        for ($y = 0; $y < $ySize; $y++) {
+            for ($x = 0; $x < $xSize; $x++) {
+                $grid->setValueXY($x, $y, $value);
             }
         }
+
+        return $grid;
     }
 
     public function setValue(Vector2Int $position, mixed $value): void
@@ -57,8 +80,34 @@ final class Grid
         return (int) max(array_keys($this->grid));
     }
 
+    public function getRows(): array
+    {
+        return $this->grid;
+    }
+
     public function getRow(int $int): array
     {
         return $this->grid[$int] ?? [];
+    }
+
+    public function isSet($x, $y): bool
+    {
+        return isset($this->grid[$y][$x]);
+    }
+
+    /**
+     * @return Generator<string|int|bool> "$x:$y" => $value
+     */
+    public function getNeighborsDiagonal(int $xCenter, int $yCenter): Generator
+    {
+        for ($y = $yCenter - 1; $y <= $yCenter + 1; $y++) {
+            for ($x = $xCenter - 1; $x <= $xCenter + 1; $x++) {
+                if (($x === $xCenter && $y === $yCenter) || !$this->isSet($x, $y)) {
+                    continue;
+                }
+
+                yield "$x:$y" => $this->grid[$y][$x];
+            }
+        }
     }
 }
