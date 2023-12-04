@@ -36,7 +36,7 @@ class Adder implements IDay
     {
         $dataAsInts = $data->getAsArrayOfIntegers();
         $theNumber = (int) $this->runPart1($data);
-        $dataCount = count($dataAsInts);
+        $dataCount = $data->getLinesCount();
 
         for ($i = 0; $i < $dataCount - 1; $i++) {
             $sum = $min = $max = $dataAsInts[$i];

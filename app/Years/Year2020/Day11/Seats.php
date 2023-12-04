@@ -89,7 +89,7 @@ class Seats implements IDay
     {
         $wasOccupiedBefore = $seats[$rowOrigin][$colOrigin];
         $neighboring = 0;
-        $rowsTotal = count($data->getAsArray());
+        $rowsTotal = $data->getLinesCount();
         $colsTotal = strlen($data->getAsArray()[0]);
 
         for ($rowDir = -1; $rowDir <= 1; $rowDir++) {

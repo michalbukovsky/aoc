@@ -103,4 +103,9 @@ class Input
     {
         return Tools::intifyArray(explode($separator, $this->getFirstLine()));
     }
+
+    public function getLinesCount(): int
+    {
+        return count($this->getAsArray());
+    }
 }
